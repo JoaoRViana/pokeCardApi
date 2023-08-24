@@ -23,6 +23,9 @@ module.exports = {
       name:{
         type: Sequelize.STRING
       },
+      types:{
+        type: Sequelize.STRING
+      }
     });
   },
   down: async (queryInterface, _Sequelize) => {
