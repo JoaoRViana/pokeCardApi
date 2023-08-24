@@ -5,7 +5,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import db from '.';
+import db from './index';
 import UserModel from './UserModel';
 
 class CardModel extends Model<InferAttributes<CardModel>,
