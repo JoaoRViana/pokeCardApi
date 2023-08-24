@@ -3,12 +3,12 @@ import db from './index';
 import DeckModel from './DeckModel';
 import CardModel from './CardModel';
 
-class cardInDeckModel extends Model<InferAttributes<cardInDeckModel>, InferCreationAttributes<cardInDeckModel>> {
+class CardInDeckModel extends Model<InferAttributes<CardInDeckModel>, InferCreationAttributes<CardInDeckModel>> {
   declare cardId: number;
   declare deckId: number;
 }
 
-cardInDeckModel.init(
+CardInDeckModel.init(
   {
     cardId: {
       type: DataTypes.INTEGER,
@@ -24,12 +24,12 @@ cardInDeckModel.init(
   {
     sequelize: db,
     underscored: true,
-    modelName: 'cardInDeck',
+    modelName: 'cardInDecks',
     timestamps: false,
   }
 );
 
-cardInDeckModel.belongsTo(CardModel, { foreignKey: 'cardId', as: 'card' });
-cardInDeckModel.belongsTo(DeckModel, { foreignKey: 'deckId', as: 'deck' });
+CardInDeckModel.belongsTo(CardModel, { foreignKey: 'cardId' });
+CardInDeckModel.belongsTo(DeckModel, { foreignKey: 'deckId'});
 
-export default cardInDeckModel;
+export default CardInDeckModel;

@@ -33,10 +33,10 @@ module.exports = {
       },
     ];
 
-    await queryInterface.bulkInsert('cardInDeck', demoDeck, {});
+    await queryInterface.bulkInsert('card_in_decks', demoDeck, {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('cardInDeck', null, {});
+    await queryInterface.bulkDelete('card_in_decks', null, {});
   }
 };

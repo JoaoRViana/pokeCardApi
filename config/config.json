@@ -1,0 +1,12 @@
+{
+  "username": "root",
+  "password": "password",
+  "database": "pokecard",
+  "host": "localhost",
+  "port": 3306,
+  "dialect": "mysql",
+  "dialectOptions": {
+    "timezone": "Z"
+  },
+  "logging": false
+}
