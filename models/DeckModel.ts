@@ -5,7 +5,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import db from '.';
+import db from './index';
 import UserModel from './UserModel';
 
 class DeckModel extends Model<InferAttributes<DeckModel>,
@@ -37,6 +37,6 @@ DeckModel.init({
   timestamps: false,
 });
 
-DeckModel.belongsTo(UserModel,{foreignKey:'user_id', as:'user_id'})
+DeckModel.belongsTo(UserModel,{foreignKey:'user_id'})
 
 export default DeckModel;
