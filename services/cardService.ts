@@ -1,5 +1,5 @@
 import CardModel from '../models/CardModel'
-import {SERVER_RETURN} from '../types/index'
+import {SERVER_RETURN,TCard} from '../types/index'
 
 export default class CardService {
   private cardModel = CardModel
@@ -18,5 +18,14 @@ export default class CardService {
     } catch (error) {
       return{type:403,message:'it is not possible to remove this card'}
     }
+  }
+  public async addCard(userId:number,card:TCard):Promise<SERVER_RETURN>{
+    const newCardData = {
+      ...card,
+      userId,
+    }
+    const newCard = await this.cardModel.build(newCardData)
+    await newCard.save()
+    return {type:null,message:newCard}
   }
 }
