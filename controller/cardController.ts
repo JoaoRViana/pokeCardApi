@@ -11,4 +11,12 @@ export default class CardController {
     }
     return res.status(200).json(message)
   }
+  public async removeCard(req:Request,res:Response){
+    const{userId,cardId}=req.params
+    const {type,message} = await this.cardService.removeCard(+userId,+cardId)
+    if(type){
+      return res.status(type).json({message})
+    }
+    return res.status(203).json(message)
+  }
 }
