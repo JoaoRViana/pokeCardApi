@@ -11,6 +11,9 @@ module.exports = {
      name:{
       type:Sequelize.STRING
      },
+     user_id:{
+      type:Sequelize.INTEGER
+     }
     });
   },
   down: async (queryInterface, _Sequelize) => {
