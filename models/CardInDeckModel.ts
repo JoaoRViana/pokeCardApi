@@ -1,5 +1,5 @@
 import { DataTypes, Model, InferAttributes, InferCreationAttributes } from 'sequelize';
-import db from '.';
+import db from './index';
 import DeckModel from './DeckModel';
 import CardModel from './CardModel';
 

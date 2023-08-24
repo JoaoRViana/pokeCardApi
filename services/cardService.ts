@@ -11,13 +11,12 @@ export default class CardService {
     return{type:null,message:userCards}
   }
   public async removeCard(userId:number,cardId:number):Promise<SERVER_RETURN>{
-    try {
+      const card = await this.cardModel.findOne({where:{userId,id:cardId}})
+      if(!card){
+        return{type:403,message:'it is not possible to remove this card'}
+      }
       await this.cardModel.destroy({where:{userId,id:cardId}});
-      const newCards = await this.cardModel.findAll({where:{userId},attributes: { exclude: ['user_id','userId'] }})
-      return {type:null,message:newCards}
-    } catch (error) {
-      return{type:403,message:'it is not possible to remove this card'}
-    }
+      return await this.getUserCards(userId)
   }
   public async addCard(userId:number,card:TCard):Promise<SERVER_RETURN>{
     const newCardData = {
