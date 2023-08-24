@@ -5,7 +5,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import db from '.';
+import db from './index';
 
 class UserModel extends Model<InferAttributes<UserModel>,
 InferCreationAttributes<UserModel>> {

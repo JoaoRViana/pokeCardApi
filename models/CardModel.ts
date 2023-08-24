@@ -56,6 +56,6 @@ CardModel.init({
   timestamps: false,
 });
 
-CardModel.belongsTo(UserModel,{foreignKey:'user_id', as:'user_id'})
+CardModel.belongsTo(UserModel,{foreignKey:'user_id', as:'user'})
 
 export default CardModel;
