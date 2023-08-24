@@ -4,10 +4,10 @@ import {SERVER_RETURN} from '../types/index'
 export default class CardService {
   private cardModel = CardModel
   public async getUserCards(userId:number):Promise<SERVER_RETURN>{
-    const userCards = await this.cardModel.findAll({where:{userId}})
-    if(!userId){
-      return {type:404,message:'invalid user'}
+    const userCards = await this.cardModel.findAll({where:{userId},attributes: { exclude: ['user_id','id','userId'] }})
+    if(!userId || userCards.length <1){
+      return {type:404,message:'dont have cards'}
     }
-    return{type:200,message:userCards}
+    return{type:null,message:userCards}
   }
 }
