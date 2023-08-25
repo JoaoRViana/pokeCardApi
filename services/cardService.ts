@@ -10,6 +10,7 @@ export default class CardService {
     }
     return{type:null,message:userCards}
   }
+
   public async removeCard(userId:number,cardId:number):Promise<SERVER_RETURN>{
       const card = await this.cardModel.findOne({where:{userId,id:cardId}})
       if(!card){
@@ -18,6 +19,7 @@ export default class CardService {
       await this.cardModel.destroy({where:{userId,id:cardId}});
       return await this.getUserCards(userId)
   }
+  
   public async addCard(userId:number,card:TCard):Promise<SERVER_RETURN>{
     const newCardData = {
       ...card,

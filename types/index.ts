@@ -4,11 +4,11 @@ export type SERVER_RETURN={
 }
 
 export type TCard={
+  id:number,
   name:string,
   hp:number,
   attack:number,
   spriteOnBoard:string,
   spriteOnCard:string,
   types:string,
-  
 }
