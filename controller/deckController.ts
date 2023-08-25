@@ -3,7 +3,7 @@ import DeckService from '../services/deckService';
 
 export default class DeckController{
   constructor(private deckService = new DeckService()) {}
-  
+
   public async getUserDecks(req:Request,res:Response){
     const {userId} = req.params;
     const {type,message} = await this.deckService.getUserDecks(+userId)

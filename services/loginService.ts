@@ -13,9 +13,9 @@ export default class LoginService {
   }
   public async register(username:string,password:string):Promise<SERVER_RETURN>{
     const user = await this.usermodel.findOne({where:{userName:username}});
-    if(!user){
-      const newUser = await this.usermodel.create({userName:username,password})
-      return{type:null,message:newUser}
+    if(!user && username.length >3 && password.length >3){
+      const newUser = await this.usermodel.create({userName:username,password},)
+      return{type:null,message:{id:newUser.id,userName:newUser.userName}}
     }
     return {type:401,message:'username invalid'}
   }

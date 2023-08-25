@@ -21,11 +21,14 @@ export default class CardService {
   }
   
   public async addCard(userId:number,card:TCard):Promise<SERVER_RETURN>{
+    if(!card.name || !card.attack || !card.hp || !card.spriteOnBoard || !card.spriteOnCard || !card.types){
+      return {type:400,message:'missing values or invalid values'}
+    }
     const newCardData = {
       ...card,
       userId,
     }
-    const newCard = await this.cardModel.build(newCardData)
+    const newCard = this.cardModel.build(newCardData)
     await newCard.save()
     return {type:null,message:newCard}
   }
