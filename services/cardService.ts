@@ -1,8 +1,13 @@
 import CardModel from '../models/CardModel'
+import CardInDeckModel from '../models/CardInDeckModel'
+import DeckModel from '../models/DeckModel'
 import {SERVER_RETURN,TCard} from '../types/index'
 
 export default class CardService {
   private cardModel = CardModel
+  private cardInDeckModel = CardInDeckModel
+  private deckModel = DeckModel
+
   public async getUserCards(userId:number):Promise<SERVER_RETURN>{
     const userCards = await this.cardModel.findAll({where:{userId},attributes: { exclude: ['user_id','userId'] }})
     if(!userId || userCards.length <1){
@@ -17,6 +22,10 @@ export default class CardService {
         return{type:403,message:'it is not possible to remove this card'}
       }
       await this.cardModel.destroy({where:{userId,id:cardId}});
+      const decks = await this.cardInDeckModel.findAll({where:{cardId}});
+      await Promise.all(decks.map(async(e)=> await this.deckModel.destroy({where:{id:e.deckId}})))
+      await this.cardInDeckModel.destroy({where:{cardId}});
+      
       return await this.getUserCards(userId)
   }
   

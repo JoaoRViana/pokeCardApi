@@ -6,7 +6,7 @@ export default class LoginService {
   public async login(username:string,password:string):Promise<SERVER_RETURN>{
     const user = await this.usermodel.findOne({where:{userName:username,password}})
     if(user){
-      return {type:null,message:{id:user.id}}
+      return {type:null,message:{id:user.id,userName:user.userName}}
     }else{
       return {type:404,message:'userName or password invalid'}
     }
