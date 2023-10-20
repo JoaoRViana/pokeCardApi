@@ -17,7 +17,7 @@ export default class CardController {
     if(type){
       return res.status(type).json({message})
     }
-    return res.status(203).json(message)
+    return res.status(200).json(message)
   }
   public async addCard(req:Request,res:Response){
     const{userId} = req.params
@@ -26,6 +26,6 @@ export default class CardController {
     if(type){
       return res.status(type).json({message})
     }
-    return res.status(200).json(message)
+    return res.status(201).json(message)
   }
 }

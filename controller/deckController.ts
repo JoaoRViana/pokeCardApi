@@ -29,7 +29,7 @@ export default class DeckController{
     if(type){
       return res.status(type).json({message})
     }
-    return res.status(200).json(message)
+    return res.status(201).json(message)
   }
 
   public async getDeck(req:Request,res:Response){
