@@ -1,5 +1,60 @@
 # PokeCardApi
 
+<details>
+<summary>Instalação</summary>
+
+## Instalação
+
+Para iniciar a aplicação, siga as etapas abaixo, dependendo se você está usando Docker ou não.
+
+
+### Com Docker (Recomendado)
+
+Se você deseja executar a aplicação com Docker, siga as etapas abaixo:
+
+1. Execute o seguinte comando para instalar as dependências do projeto:
+
+  ```bash
+  docker-compose run pokecard npm install
+  ```
+
+2. No diretório raiz do projeto, execute o seguinte comando para construir e iniciar os contêineres Docker em segundo plano:
+
+  ```bash
+  docker-compose up -d 
+  ```
+3. Após os contêineres estarem em execução, você precisará popular o banco de dados dentro do contêiner gerado. Execute o seguinte comando dentro do contêiner:
+
+  ```bash
+  docker exec -it pokecard npm run seed
+  ```
+4. Para iniciar o servidor, execute o seguinte comando dentro do contêiner:
+
+  ```bash
+  docker exec -it pokecard npm start
+  ```
+
+### Sem o Docker
+
+Se você preferir executar a aplicação sem Docker, siga estas etapas:
+
+1. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências do projeto:
+  ```bash
+  npm install
+  ```
+2. Em seguida, execute o seguinte comando para criar o banco de dados e popular com dados iniciais:
+
+  ```bash
+  npm run createdb
+  ```
+
+### Agora, independente do método escolhido, a aplicação estará pronta para ser iniciada:
+
+1. Finalmente, inicie o servidor com o seguinte comando:
+  ```bash
+  npm start
+  ```
+</details>
 
 ## Tecnologias Utilizadas
 
@@ -88,11 +143,82 @@ A Rota de Pegar Cartas é usada para recuperar as cartas pertencentes a um usuá
 
 ```http
 GET /card/123 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
-### Exemplo de Resposta (Response)
+
+<details>
+<summary>Exemplo de Resposta</summary>
 
 - **Status:** 200 (OK)
+```json
+[
+  {
+    "id": 1,
+    "name": "bulbasaur",
+    "attack": 50,
+    "hp": 100,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "grass_poison"
+  },
+  {
+    "id": 2,
+    "name": "charmander",
+    "attack": 80,
+    "hp": 80,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "fire"
+  },
+  {
+    "id": 3,
+    "name": "squitle",
+    "attack": 40,
+    "hp": 140,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "water"
+  },
+  {
+    "id": 4,
+    "name": "pikachu",
+    "attack": 60,
+    "hp": 100,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "electric"
+  },
+  {
+    "id": 5,
+    "name": "pidgey",
+    "attack": 50,
+    "hp": 100,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "normal_flying"
+  },
+  {
+    "id": 6,
+    "name": "ratata",
+    "attack": 50,
+    "hp": 100,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "normal"
+  },
+  {
+    "id": 9,
+    "name": "squitle",
+    "attack": 40,
+    "hp": 140,
+    "spriteOnBoard": "sprite1-board.png",
+    "spriteOnCard": "sprite1-card.png",
+    "types": "water"
+  }
+]
+```
+ </details>
+
 
 ## Rota de Deletar Carta
 
@@ -115,7 +241,7 @@ A Rota de Deletar Carta é usada para excluir uma carta específica de um usuár
 
 ```http
 DELETE /card/123/456 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
 ## Rota de Ganhar Carta
 
@@ -145,7 +271,7 @@ A Rota de Ganhar Carta permite que você registre uma nova carta que um usuário
 **Solicitação:**
 ```http
 POST /card/123 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
 
 ## Rota de Pegar Decks
@@ -157,9 +283,142 @@ A Rota de Pegar Decks permite que você obtenha todos os decks associados a um u
 - **Método HTTP:** GET
 - **URL:** `/deck/:userId`
 
-### Exemplo de Resposta (Response)
+<details>
+<summary>Exemplo de Resposta</summary>
+
 
 - **Status:** 200 (OK)
+
+```json
+[
+  {
+    "deck": {
+      "id": 1,
+      "name": "test"
+    },
+    "cards": [
+      {
+        "id": 1,
+        "name": "bulbasaur",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "grass_poison"
+      },
+      {
+        "id": 2,
+        "name": "charmander",
+        "attack": 80,
+        "hp": 80,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "fire"
+      },
+      {
+        "id": 3,
+        "name": "squitle",
+        "attack": 40,
+        "hp": 140,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "water"
+      },
+      {
+        "id": 4,
+        "name": "pikachu",
+        "attack": 60,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "electric"
+      },
+      {
+        "id": 5,
+        "name": "pidgey",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "normal_flying"
+      },
+      {
+        "id": 6,
+        "name": "ratata",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "normal"
+      }
+    ]
+  },
+  {
+    "deck": {
+      "id": 2,
+      "name": "a"
+    },
+    "cards": [
+      {
+        "id": 1,
+        "name": "bulbasaur",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "grass_poison"
+      },
+      {
+        "id": 2,
+        "name": "charmander",
+        "attack": 80,
+        "hp": 80,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "fire"
+      },
+      {
+        "id": 3,
+        "name": "squitle",
+        "attack": 40,
+        "hp": 140,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "water"
+      },
+      {
+        "id": 4,
+        "name": "pikachu",
+        "attack": 60,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "electric"
+      },
+      {
+        "id": 5,
+        "name": "pidgey",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "normal_flying"
+      },
+      {
+        "id": 6,
+        "name": "ratata",
+        "attack": 50,
+        "hp": 100,
+        "spriteOnBoard": "sprite1-board.png",
+        "spriteOnCard": "sprite1-card.png",
+        "types": "normal"
+      }
+    ]
+  }
+]
+```
+</details>
+
 
 ### Exemplo de Uso
 
@@ -169,7 +428,7 @@ A Rota de Pegar Decks é usada para recuperar todos os decks pertencentes a um u
 
 ```http
 GET /deck/123 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
 ## Rota de Pegar Deck
 
@@ -180,9 +439,75 @@ A Rota de Pegar Deck permite que você obtenha as cartas que estão associadas a
 - **Método HTTP:** GET
 - **URL:** `/deck/:userId/:deckId`
 
-### Exemplo de Resposta (Response)
+<details> 
+<summary>Exemplo de Resposta</summary>
 
 - **Status:** 200 (OK)
+```json
+{
+  "deck": {
+    "id": 1,
+    "name": "test"
+  },
+  "cards": [
+    {
+      "id": 1,
+      "name": "bulbasaur",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "grass_poison"
+    },
+    {
+      "id": 2,
+      "name": "charmander",
+      "attack": 80,
+      "hp": 80,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "fire"
+    },
+    {
+      "id": 3,
+      "name": "squitle",
+      "attack": 40,
+      "hp": 140,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "water"
+    },
+    {
+      "id": 4,
+      "name": "pikachu",
+      "attack": 60,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "electric"
+    },
+    {
+      "id": 5,
+      "name": "pidgey",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "normal_flying"
+    },
+    {
+      "id": 6,
+      "name": "ratata",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "normal"
+    }
+  ]
+}
+```
+</details>
 
 ### Exemplo de Uso
 
@@ -192,7 +517,7 @@ A Rota de Pegar Deck é usada para recuperar as cartas que estão associadas a u
 
 ```http
 GET /deck/123/456 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
 ## Rota de Deletar Deck
 
@@ -215,7 +540,7 @@ A Rota de Deletar Deck é usada para excluir um deck específico de um usuário.
 
 ```http
 DELETE /deck/123/456 HTTP/1.1
-Host: seu-servidor.com
+Host: http://localhost:3001
 ```
 ### Exemplo de Resposta (Response)
 
@@ -258,31 +583,69 @@ A Rota de Criar Deck é usada para adicionar um novo deck à coleção de um usu
 
 ```http
 POST /deck/123 HTTP/1.1
-Host: seu-servidor.com
-Content-Type: application/json
+Host: http://localhost:3001
+```
 
+### Corpo da Solicitação (Request Body)
+
+```json
 {
-  "name": "Meu Novo Deck",
+  "name":"initialDeck",
   "cards": [
     {
       "id": 1,
-      "name": "Carta 1",
-      "hp": 20,
-      "attack": 10,
-      "spriteOnBoard": "caminho-da-imagem",
-      "spriteOnCard": "caminho-da-imagem",
-      "types": "Tipo A"
+      "name": "bulbasaur",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "grass_poison"
     },
     {
       "id": 2,
-      "name": "Carta 2",
-      "hp": 25,
-      "attack": 15,
-      "spriteOnBoard": "caminho-da-imagem",
-      "spriteOnCard": "caminho-da-imagem",
-      "types": "Tipo B"
+      "name": "charmander",
+      "attack": 80,
+      "hp": 80,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "fire"
     },
-    // Outras cartas do deck
+    {
+      "id": 3,
+      "name": "squitle",
+      "attack": 40,
+      "hp": 140,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "water"
+    },
+    {
+      "id": 4,
+      "name": "pikachu",
+      "attack": 60,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "electric"
+    },
+    {
+      "id": 5,
+      "name": "pidgey",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "normal_flying"
+    },
+    {
+      "id": 6,
+      "name": "ratata",
+      "attack": 50,
+      "hp": 100,
+      "spriteOnBoard": "sprite1-board.png",
+      "spriteOnCard": "sprite1-card.png",
+      "types": "normal"
+    }
   ]
 }
-``
+```

@@ -1,6 +1,6 @@
 {
   "username": "root",
-  "password": "password",
+  "password": "root",
   "database": "pokecard",
   "host": "localhost",
   "port": 3306,

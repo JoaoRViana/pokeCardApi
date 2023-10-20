@@ -9,7 +9,7 @@ export default class DeckService{
  private cardInDeckModel = CardInDeckModel
 
  public async getUserDecks(userId:number):Promise<SERVER_RETURN>{
-  const userDecks = await this.deckModel.findAll({where:{userId}})
+  const userDecks = await this.deckModel.findAll({where:{userId},attributes: { exclude: ['user_id','userId'] }})
   const cards = await Promise.all(userDecks.map(async (e)=>{
     const cards = await this.cardInDeckModel.findAll({where:{deckId:e.id}})
     const attCards=  await Promise.all(cards.map(async(e)=>(this.cardModel.findOne({where:{id:e.cardId},attributes: { exclude: ['user_id','userId'] }}))))
@@ -29,6 +29,7 @@ export default class DeckService{
     await this.cardInDeckModel.destroy({where:{deckId}})
     return await this.getUserDecks(userId)
   }
+  
   public async addDeck(userId:number,name:string,cards:TCard[]):Promise<SERVER_RETURN>{
     const newDeckData = {
       name,
@@ -47,7 +48,7 @@ export default class DeckService{
   }
 
   public async getDeck(userId:number,deckId:number):Promise<SERVER_RETURN>{
-   const userDeck = await this.deckModel.findOne({where:{userId,id:deckId}})
+   const userDeck = await this.deckModel.findOne({where:{userId,id:deckId},attributes: { exclude: ['user_id','userId'] }})
     const cards = await this.cardInDeckModel.findAll({where:{deckId}})
     const attCards=  await Promise.all(cards.map(async(e)=>(this.cardModel.findOne({where:{id:e.cardId},attributes: { exclude: ['user_id','userId'] }}))))
   if(!userDeck){
