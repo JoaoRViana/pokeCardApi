@@ -22,7 +22,7 @@ module.exports = {
         types: 'fire',
       },
       {
-        name: 'squitle',
+        name: 'squirtle',
         user_id: 1, 
         attack: 40,
         hp: 140,
@@ -75,7 +75,7 @@ module.exports = {
         types: 'fire',
       },
       {
-        name: 'squitle',
+        name: 'squirtle',
         user_id: 1, 
         attack: 40,
         hp: 140,
