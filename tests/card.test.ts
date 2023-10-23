@@ -24,3 +24,21 @@ describe('/card',() =>{
         expect(status).to.be.deep.equal(200)
     })
 })
+
+describe('/card errors',()=>{
+    it('GET /:userId',async function(){
+        const {status,body} = await chai.request(app).get('/card/4')
+        expect(status).to.be.equal(404)
+        expect(body).to.be.deep.equal({message:'dont have cards'})
+    })
+    it('POST /:userId', async function(){
+        const {status,body} = await chai.request(app).post('/card/1').send({name:'a'})
+        expect(status).to.be.deep.equal(400)
+        expect(body).to.be.deep.equal({message:'missing values or invalid values'})
+    })
+    it('DELETE /:userId/:cardId', async function(){
+        const {status,body} = await chai.request(app).delete('/card/1/99')
+        expect(status).to.be.deep.equal(403)
+        expect(body).to.be.deep.equal({message:'it is not possible to remove this card'})
+    })
+})

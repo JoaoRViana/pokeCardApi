@@ -9,7 +9,7 @@
     "migrate": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "seed": "npm run migrate && npx sequelize-cli db:seed:all",
     "createdb": "ts-node ./config/createdb.ts && npm run seed",
-    "coverage": "nyc --ignore './models/*' --ignore './seeders/*' --ignore './migrations/*' npm test"
+    "coverage": "nyc --exclude \"seeders/**\" --exclude \"models/**\" --exclude \"migrations/**\" --exclude \"app.ts\" npm test"
   },
   "keywords": [],
   "author": "",

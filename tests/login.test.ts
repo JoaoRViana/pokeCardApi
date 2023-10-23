@@ -18,3 +18,15 @@ describe('/login', () => {
         expect(status).to.be.deep.equal(200)
     })
 });
+describe('/login errors', () => {
+    it('/login/register',async function(){
+        const {status,body} = await chai.request(app).post('/login/register').send(login);
+        expect(status).to.be.deep.equal(401)
+        expect(body).to.be.deep.equal({message:'username invalid'})
+    })
+    it('login',async function(){
+        const {status,body} = await chai.request(app).post('/login').send({userName:'a',password:'b'});
+        expect(status).to.be.deep.equal(404)
+        expect(body).to.be.deep.equal({message:'userName or password invalid'})
+    })
+});

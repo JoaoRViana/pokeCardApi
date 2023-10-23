@@ -15,7 +15,7 @@ export default class DeckService{
     const attCards=  await Promise.all(cards.map(async(e)=>(this.cardModel.findOne({where:{id:e.cardId},attributes: { exclude: ['user_id','userId'] }}))))
     return {deck:e,cards:attCards}
   }))
-  if(userDecks.length <0){
+  if(userDecks.length <1){
     return{type:404,message:'There are no decks for this user'}
   }
   return {type:null,message:cards}
