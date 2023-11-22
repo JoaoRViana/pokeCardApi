@@ -5,6 +5,7 @@ const createdbConfig: Options = {
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASS || 'root',
   host: process.env.DB_HOST || 'localhost',
+  database: 'pokecard',
   port: Number(process.env.DB_PORT) || 3306,
   dialect: 'mysql',
   dialectOptions: {

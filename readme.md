@@ -12,28 +12,23 @@ Para iniciar a aplicação, siga as etapas abaixo, dependendo se você está usa
 
 Se você deseja executar a aplicação com Docker, siga as etapas abaixo:
 
-1. Execute o seguinte comando para instalar as dependências do projeto:
 
-  ```bash
-  docker-compose run pokecard npm install
-  ```
-
-2. No diretório raiz do projeto, execute o seguinte comando para construir e iniciar os contêineres Docker em segundo plano:
+1. No diretório raiz do projeto, execute o seguinte comando para construir e iniciar os contêineres Docker em segundo plano:
 
   ```bash
   docker-compose up -d 
   ```
-3. Após os contêineres estarem em execução, você precisará popular o banco de dados dentro do contêiner gerado. Execute o seguinte comando dentro do contêiner:
+2. Após os contêineres estarem em execução. Execute o seguinte comando para entrar no contêiner:
 
   ```bash
-  docker exec -it pokecard npm run seed
+  docker-compose exec app sh
   ```
-4. Para iniciar o servidor, execute o seguinte comando dentro do contêiner:
+3. Você precisará popular o banco de dados dentro do contêiner gerado Execute o seguinte comando dentro do contêiner::
 
   ```bash
-  docker exec -it pokecard npm start
+  npm run seed
   ```
-
+  
 ### Sem o Docker
 
 Se você preferir executar a aplicação sem Docker, siga estas etapas:
@@ -47,13 +42,11 @@ Se você preferir executar a aplicação sem Docker, siga estas etapas:
   ```bash
   npm run createdb
   ```
-
-### Agora, independente do método escolhido, a aplicação estará pronta para ser iniciada:
-
-1. Finalmente, inicie o servidor com o seguinte comando:
+3. Finalmente, inicie o servidor com o seguinte comando:
   ```bash
   npm start
   ```
+
 </details>
 
 ## Tecnologias Utilizadas
