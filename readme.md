@@ -7,13 +7,17 @@
 
 Para iniciar a aplicação, siga as etapas abaixo, dependendo se você está usando Docker ou não.
 
+1. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências do projeto:
+  ```bash
+  npm install
+  ```
 
 ### Com Docker (Recomendado)
 
 Se você deseja executar a aplicação com Docker, siga as etapas abaixo:
 
 
-1. No diretório raiz do projeto, execute o seguinte comando para construir e iniciar os contêineres Docker em segundo plano:
+1. Execute o seguinte comando para construir e iniciar os contêineres Docker em segundo plano:
 
   ```bash
   docker-compose up -d 
@@ -33,16 +37,13 @@ Se você deseja executar a aplicação com Docker, siga as etapas abaixo:
 
 Se você preferir executar a aplicação sem Docker, siga estas etapas:
 
-1. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências do projeto:
-  ```bash
-  npm install
-  ```
-2. Em seguida, execute o seguinte comando para criar o banco de dados e popular com dados iniciais:
+
+1. Execute o seguinte comando para criar o banco de dados e popular com dados iniciais:
 
   ```bash
   npm run createdb
   ```
-3. Finalmente, inicie o servidor com o seguinte comando:
+2. Inicie o servidor com o seguinte comando:
   ```bash
   npm start
   ```
